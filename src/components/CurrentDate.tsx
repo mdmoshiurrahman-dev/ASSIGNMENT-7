@@ -1,16 +1,12 @@
 "use client";
-const CurrentDateInNav = () => {
+const CurrentDate = () => {
   const currentDate = new Date().toLocaleDateString("bn-BD", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  return (
-    <>
-      <p className="text-gray-700 text-[12px]">{currentDate}</p>
-    </>
-  );
+  return currentDate;
 };
 
-export default CurrentDateInNav;
+export default CurrentDate;

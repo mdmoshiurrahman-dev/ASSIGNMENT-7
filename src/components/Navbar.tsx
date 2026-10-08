@@ -3,8 +3,8 @@ import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import MarqueeTextBox from "./MarqueeTextBox";
-import CurrentDateInNav from "./CurrentdateInNav";
 import { Suspense } from "react";
+import CurrentDate from "./CurrentDate";
 
 const Navbar = async () => {
   const categoryApiNavbar = process.env.PRODUCT_CATEGORY_API_URL_NAVBAR;
@@ -64,9 +64,11 @@ const Navbar = async () => {
               </div>
               <div>
                 <p className="font-bold text-[18px]">বাজার দর</p>
-                <Suspense fallback={"Loading"}>
-                  <CurrentDateInNav />
-                </Suspense>
+                <p className="text-gray-700 text-[12px]">
+                  <Suspense>
+                    <CurrentDate />
+                  </Suspense>
+                </p>
               </div>
             </div>
           </Link>
