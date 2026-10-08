@@ -31,7 +31,7 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
           </div>
           <div className="flex flex-col justify-around items-start">
             <h2 className="font-bold text-2xl">{product.nameBn}</h2>
-            <p className="text-gray-700 text-[14px]">{`প্রতি ${product.unit} · ${product.categoryNameBn}`}</p>
+            <p className="text-gray-700 text-[14px]">{`প্রতি ${product.unit === "kg" ? "কেজি" : product.unit === "litre" ? "লিটার" : "গ্রাম"} · ${product.categoryNameBn}`}</p>
             <p className="text-black text-[14px]">{`গতকালের তুলনায় আজ দাম ${product.change.dir === "up" ? "বেড়েছে" : "কমেছে"} · ${new Intl.NumberFormat("bn-BD").format(Math.abs(Number(product.today - product.yesterday)))} টাকা`}</p>
           </div>
         </div>
@@ -40,7 +40,7 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
           <p className="font-bold text-2xl">
             {new Intl.NumberFormat("bn-BD").format(product.today)}
           </p>
-          <p className="text-[14px] text-gray-700">{`টাকা / ${product.unit}`}</p>
+          <p className="text-[14px] text-gray-700">{`টাকা / ${product.unit === "kg" ? "কেজি" : product.unit === "litre" ? "লিটার" : "গ্রাম"}`}</p>
           <p className=" py-0.75 px-2 rounded-xl font-semibold text-[14px]">
             {product.change.dir === "up" ? (
               <span className="text-red-700">
@@ -97,7 +97,7 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
               </span>{" "}
               টাকা
             </p>
-            <p>{`প্রতি ${product.unit}-এর হিসাবে`}</p>
+            <p>{`প্রতি ${product.unit === "kg" ? "কেজি" : product.unit === "litre" ? "লিটার" : "গ্রাম"} -এর হিসাবে`}</p>
           </div>
         </div>
         <div>
@@ -124,9 +124,9 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
                     >
                       <td>{x.market}</td>
                       <td>{x.division}</td>
-                      <td>{`${x.min} টাকা`}</td>
-                      <td>{`${x.max} টাকা`}</td>
-                      <td>{`${x.average} টাকা`}</td>
+                      <td>{`${new Intl.NumberFormat("bn-BD").format(x.min)} টাকা`}</td>
+                      <td>{`${new Intl.NumberFormat("bn-BD").format(x.max)} টাকা`}</td>
+                      <td>{`${new Intl.NumberFormat("bn-BD").format(x.average)} টাকা`}</td>
                     </tr>
                   );
                 })}
