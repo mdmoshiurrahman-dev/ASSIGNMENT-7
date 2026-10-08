@@ -4,12 +4,16 @@ import { IoCaretDown, IoCaretUpOutline } from "react-icons/io5";
 import MarqueeText from "react-marquee-text";
 
 const MarqueeTextBox = async () => {
+  const productApi = process.env.PRODUCTS_API_URL
+  if(!productApi){
+    throw new Error('API Error: The endpoint URL is invalid or returned a 404 Not Found status.');
+  }
   const response = await fetch(
     "https://api.api-store.workers.dev/api/bazardor/products",
     { next: { revalidate: 86400 } },
   );
   if (!response.ok) {
-    throw new Error("Data fetch from api has been failed!");
+    throw new Error(`ERROR: ${response.status} - ${response.statusText}`);
   }
   const data: Product[] = await response.json();
   return (

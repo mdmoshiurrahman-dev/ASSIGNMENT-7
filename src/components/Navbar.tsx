@@ -7,12 +7,15 @@ import CurrentDateInNav from "./CurrentdateInNav";
 import { Suspense } from "react";
 
 const Navbar = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories",
-    { next: { revalidate: 86400 } },
-  );
+  const categoryApiNavbar = process.env.PRODUCT_CATEGORY_API_URL_NAVBAR;
+  if (!categoryApiNavbar) {
+    throw new Error(
+      "API Error: The endpoint URL is invalid or returned a 404 Not Found status.",
+    );
+  }
+  const res = await fetch(categoryApiNavbar, { next: { revalidate: 86400 } });
   if (!res.ok) {
-    throw new Error("Fetch data from api has been failed!");
+    throw new Error(`ERROR: ${res.status} - ${res.statusText}`);
   }
   const data: CategoryTypesResponse = await res.json();
 

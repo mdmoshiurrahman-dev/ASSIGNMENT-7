@@ -6,11 +6,17 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 const CategoryPage = async ({ params }: Props) => {
-   const { slug } = await params;
-  const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${slug}`,
-    { cache: "force-cache" },
-  );
+  const categoryApiUrl = process.env.PRODUCT_API_CATEGORY_URL;
+  if (!categoryApiUrl) {
+    throw new Error(
+      "API Error: The endpoint URL is invalid or returned a 404 Not Found status.",
+    );
+  }
+  const { slug } = await params;
+  const res = await fetch(`${categoryApiUrl}${slug}`, { cache: "force-cache" });
+  if (!res.ok) {
+    throw new Error(`ERROR: ${res.status} - ${res.statusText}`);
+  }
   const data: Product[] = await res.json();
   return <DisplayCategoryProducts data={data} />;
 };

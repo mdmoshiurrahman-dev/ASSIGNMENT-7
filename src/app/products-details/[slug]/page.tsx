@@ -6,9 +6,18 @@ type DetailsPageProps = {
 };
 const DetailsPage = async ({ params }: DetailsPageProps) => {
   const { slug } = await params;
+  const productsApi = process.env.PRODUCTS_API_URL;
+  if (!productsApi) {
+    throw new Error(
+      "API Error: The endpoint URL is invalid or returned a 404 Not Found status.",
+    );
+  }
   const res = await fetch(
     `https://api.api-store.workers.dev/api/bazardor/products/${slug}`,
   );
+  if (!res.ok) {
+    throw new Error(`ERROR: ${res.status} - ${res.statusText}`);
+  }
   const product: Product = await res.json();
   const maxPriceMarket = product.markets.sort((a, b) => b.max - a.max)[0];
   const minPriceMarket = product.markets.sort((a, b) => a.min - b.min)[0];
