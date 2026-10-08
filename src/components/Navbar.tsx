@@ -1,4 +1,4 @@
-import { CategoryTypesResponse } from "@/app/types/category";
+import { CategoryTypesResponse } from "@/types/category";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -115,7 +115,7 @@ const Navbar = async () => {
       <div className="flex justify-start items-center py-2 md:py-4 border-b border-gray-200">
         <ul className="flex gap-2 md:gap-4 lg:gap-8 ml-2">
           {data.map((x) => (
-            <Link key={x.id} href={""}>
+            <Link key={x.id} href={`/category/${x.slug}`}>
               <li className="font-semibold text-[14px] md:text-[16px] hover:underline">{`${x.icon} ${x.nameBn}`}</li>
             </Link>
           ))}

@@ -1,4 +1,4 @@
-import { Product } from "@/app/types/products";
+import { Product } from "@/types/products";
 import Link from "next/link";
 import { IoCaretDown, IoCaretUpOutline } from "react-icons/io5";
 import MarqueeText from "react-marquee-text";

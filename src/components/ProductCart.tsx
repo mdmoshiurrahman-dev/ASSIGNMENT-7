@@ -1,4 +1,4 @@
-import { Product } from "@/app/types/products";
+import { Product } from "@/types/products";
 import { IoCaretDown, IoCaretUpOutline } from "react-icons/io5";
 
 export interface ProductCartProps {
@@ -7,14 +7,14 @@ export interface ProductCartProps {
 
 const ProductCart = ({ products }: ProductCartProps) => {
   return (
-    <div className="flex flex-col bg-white p-3 rounded-xl gap-2 cursor-pointer border border-gray-200">
+    <div className="flex flex-col bg-white p-3 rounded-xl gap-2 cursor-pointer border border-gray-200 hover:shadow-md transition duration-300">
       <div className="flex gap-3">
         <p className="text-3xl p-1 bg-gray-200 rounded-xl">
           {products.categoryIcon}
         </p>
         <div>
           <p className="font-bold text-[17px]">{products.nameBn}</p>
-          <p className="text-[14px] text-gray-700">{`প্রতি ${products.unit === "kg" ? "কেজি" : ""}`}</p>
+          <p className="text-[14px] text-gray-700">{`প্রতি ${products.unit}`}</p>
         </div>
       </div>
       <div className="flex flex-col">
@@ -33,7 +33,8 @@ const ProductCart = ({ products }: ProductCartProps) => {
             <p className="bg-gray-50 py-0.75 px-2 rounded-xl font-semibold text-[14px]">
               {products.change.dir === "up" ? (
                 <span className="text-red-700">
-                  <IoCaretUpOutline className="inline" /> {new Intl.NumberFormat("bn-BD").format(products.change.pct)}%
+                  <IoCaretUpOutline className="inline" />{" "}
+                  {new Intl.NumberFormat("bn-BD").format(products.change.pct)}%
                 </span>
               ) : (
                 <span className="text-[#05893E]">

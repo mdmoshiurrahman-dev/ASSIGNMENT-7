@@ -30,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <nav className="container mx-auto">
           <Navbar />
         </nav>
-        <main className="bg-[#F0F5F0]">{children}</main>
+        <main className="grow bg-[#F0F5F0] pb-5">{children}</main>
         <footer>
           <Footer />
         </footer>
