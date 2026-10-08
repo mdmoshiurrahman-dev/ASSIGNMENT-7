@@ -3,6 +3,8 @@ import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import MarqueeTextBox from "./MarqueeTextBox";
+import CurrentDateInNav from "./CurrentdateInNav";
+import { Suspense } from "react";
 
 const Navbar = async () => {
   const res = await fetch(
@@ -14,12 +16,7 @@ const Navbar = async () => {
   }
   const data: CategoryTypesResponse = await res.json();
 
-  const currentDate = new Date().toLocaleDateString("bn-BD", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+
   return (
     <div className="flex flex-col">
       <div className="navbar  bg-base-100 border-b border-gray-200">
@@ -64,9 +61,9 @@ const Navbar = async () => {
             </div>
             <div>
               <p className="font-bold text-[18px]">বাজার দর</p>
-              <p className="text-gray-700 text-[12px]">
-                {currentDate}
-              </p>
+             <Suspense fallback = {'Loading'}>
+              <CurrentDateInNav/>
+             </Suspense>
             </div>
           </div>
         </div>
