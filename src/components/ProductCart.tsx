@@ -16,7 +16,7 @@ const ProductCart = ({ products }: ProductCartProps) => {
           </p>
           <div>
             <p className="font-bold text-[17px]">{products.nameBn}</p>
-            <p className="text-[14px] text-gray-700">{`প্রতি ${products.unit}`}</p>
+            <p className="text-[14px] text-gray-700">{`প্রতি ${products.unit === "kg" ? "কেজি" : products.unit === "litre" ? "লিটার" : "গ্রাম"}`}</p>
           </div>
         </div>
         <div className="flex flex-col">
@@ -41,7 +41,7 @@ const ProductCart = ({ products }: ProductCartProps) => {
                     )}
                     %
                   </span>
-                ) : (
+                ) : products.change.dir === "down" ? (
                   <span className="text-[#05893E]">
                     <IoCaretDown className="inline" />
                     {new Intl.NumberFormat("bn-BD").format(
@@ -49,6 +49,8 @@ const ProductCart = ({ products }: ProductCartProps) => {
                     )}
                     %
                   </span>
+                ) : (
+                  <span>0</span>
                 )}
               </p>
             </div>

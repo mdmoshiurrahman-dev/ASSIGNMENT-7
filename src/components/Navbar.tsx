@@ -16,7 +16,6 @@ const Navbar = async () => {
   }
   const data: CategoryTypesResponse = await res.json();
 
-
   return (
     <div className="flex flex-col">
       <div className="navbar  bg-base-100 border-b border-gray-200">
@@ -55,17 +54,19 @@ const Navbar = async () => {
               </p>
             </div>
           </div>
-          <div className="flex gap-2">
-            <div className="flex justify-center items-center bg-[#05893E] px-4 rounded-xl">
-              <FiShoppingCart className="text-white" />
+          <Link href={"/"}>
+            <div className="flex gap-2">
+              <div className="flex justify-center items-center bg-[#05893E] px-4 rounded-xl">
+                <FiShoppingCart className="text-white" />
+              </div>
+              <div>
+                <p className="font-bold text-[18px]">বাজার দর</p>
+                <Suspense fallback={"Loading"}>
+                  <CurrentDateInNav />
+                </Suspense>
+              </div>
             </div>
-            <div>
-              <p className="font-bold text-[18px]">বাজার দর</p>
-             <Suspense fallback = {'Loading'}>
-              <CurrentDateInNav/>
-             </Suspense>
-            </div>
-          </div>
+          </Link>
         </div>
         {/* sign in and sign up button  */}
         {/* <div className="navbar-end gap-3">

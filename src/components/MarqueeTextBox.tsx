@@ -16,25 +16,25 @@ const MarqueeTextBox = async () => {
     <div>
       <MarqueeText direction="right" duration={20}>
         {data.map((x) => (
-          <Link key={x.id} href={""}>
+          <Link key={x.id} href={`/products-details/${x.id}`}>
             <div className="border-l flex items-center gap-1 border-b border-gray-200 p-2 text-[14px] md:text-[16px] font-bold hover:bg-gray-50">
               <p>{x.categoryIcon}</p>
               <p>{x.nameBn}</p>
-              <p>{`${new Intl.NumberFormat("bn-BD").format(x.today)} টাকা/${x.unit === "kg" ? "কেজি" : "গ্রাম "}`}</p>
+              <p>{`${new Intl.NumberFormat("bn-BD").format(x.today)} টাকা/${x.unit === "kg" ? "কেজি" : x.unit === 'litre' ? 'লিটার': "গ্রাম" }`}</p>
               <p className="ml-1">
                 {x.change.dir === "up" ? (
                   <span className="text-red-700">
                     <IoCaretUpOutline className="inline" />{" "}
-                    {new Intl.NumberFormat("bn-BD").format(x.change.pct)}%
+                    {new Intl.NumberFormat("bn-BD").format(Math.abs(Number(x.change.pct)))}%
                   </span>
                 ) : x.change.dir === "down" ? (
                   <span className="text-[#05893E]">
                     <IoCaretDown className="inline" />
-                    {new Intl.NumberFormat("bn-BD").format(x.change.pct)}%
+                    {new Intl.NumberFormat("bn-BD").format(Math.abs(Number(x.change.pct)))}%
                   </span>
                 ) : (
                   <span>
-                    {new Intl.NumberFormat("bn-BD").format(x.change.pct)}
+                    {new Intl.NumberFormat("bn-BD").format(Math.abs(Number(x.change.pct)))}%
                   </span>
                 )}
               </p>

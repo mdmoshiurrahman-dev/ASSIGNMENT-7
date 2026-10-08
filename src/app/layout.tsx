@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
         </nav>
         <main className="grow bg-[#F0F5F0] pb-5">{children}</main>
-        <footer>
+        <footer className="container mx-auto">
           <Footer />
         </footer>
       </body>
