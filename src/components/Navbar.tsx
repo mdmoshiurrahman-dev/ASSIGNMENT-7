@@ -13,6 +13,13 @@ const Navbar = async () => {
     throw new Error("Fetch data from api has been failed!");
   }
   const data: CategoryTypesResponse = await res.json();
+
+  const currentDate = new Date().toLocaleDateString("bn-BD", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
     <div className="flex flex-col">
       <div className="navbar  bg-base-100 border-b border-gray-200">
@@ -58,7 +65,7 @@ const Navbar = async () => {
             <div>
               <p className="font-bold text-[18px]">বাজার দর</p>
               <p className="text-gray-700 text-[12px]">
-                মঙ্গলবার, ৬ অক্টোবর, ২০২৬
+                {currentDate}
               </p>
             </div>
           </div>
@@ -106,7 +113,7 @@ const Navbar = async () => {
       </div>
 
       <div className="flex justify-start items-center py-2 md:py-4 border-b border-gray-200">
-        <ul className="flex gap-2 md:gap-4 lg:gap-8">
+        <ul className="flex gap-2 md:gap-4 lg:gap-8 ml-2">
           {data.map((x) => (
             <Link key={x.id} href={""}>
               <li className="font-semibold text-[14px] md:text-[16px] hover:underline">{`${x.icon} ${x.nameBn}`}</li>

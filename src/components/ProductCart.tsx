@@ -1,5 +1,4 @@
 import { Product } from "@/app/types/products";
-import Image from "next/image";
 import { IoCaretDown, IoCaretUpOutline } from "react-icons/io5";
 
 export interface ProductCartProps {
@@ -31,7 +30,7 @@ const ProductCart = ({ products }: ProductCartProps) => {
             </p>
           </div>
           <div>
-            <p className="bg-gray-50 py-[3px] px-2 rounded-xl font-semibold text-[14px]">
+            <p className="bg-gray-50 py-0.75 px-2 rounded-xl font-semibold text-[14px]">
               {products.change.dir === "up" ? (
                 <span className="text-red-700">
                   <IoCaretUpOutline className="inline" /> {new Intl.NumberFormat("bn-BD").format(products.change.pct)}%

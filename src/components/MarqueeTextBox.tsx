@@ -30,7 +30,7 @@ const MarqueeTextBox = async () => {
                 ) : x.change.dir === "down" ? (
                   <span className="text-[#05893E]">
                     <IoCaretDown className="inline" />
-                    {x.change.pct}%
+                    {new Intl.NumberFormat("bn-BD").format(x.change.pct)}%
                   </span>
                 ) : (
                   <span>

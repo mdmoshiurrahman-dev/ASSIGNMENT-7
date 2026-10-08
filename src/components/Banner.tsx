@@ -2,10 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Banner = () => {
+   const currentDate = new Date().toLocaleDateString("bn-BD", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
     <div className="md:grid flex flex-col md:grid-cols-2 container mx-auto bg-white">
       <div className="p-3">
-        <p className="text-[12px] bg-[#E1F1E7] text-[#05893E] py-0.75 px-2 inline rounded-xl font-bold">মঙ্গলবার, ৬ অক্টোবর, ২০২৬</p>
+        <p className="text-[12px] bg-[#E1F1E7] text-[#05893E] py-0.75 px-2 inline rounded-xl font-bold">{currentDate}</p>
         <h1 className="text-2xl font-bold mt-2 mb-6">আজকের বাজারের দাম এক নজরে</h1>
         <p className="text-gray-500">
           চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক
