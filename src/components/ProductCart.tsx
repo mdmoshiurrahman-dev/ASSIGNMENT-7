@@ -8,7 +8,7 @@ export interface ProductCartProps {
 
 const ProductCart = ({ products }: ProductCartProps) => {
   return (
-    <div className="flex flex-col bg-white p-3 rounded-xl gap-1">
+    <div className="flex flex-col bg-white p-3 rounded-xl gap-2 cursor-pointer border border-gray-200">
       <div className="flex gap-3">
         <p className="text-3xl p-1 bg-gray-200 rounded-xl">
           {products.categoryIcon}
@@ -19,29 +19,31 @@ const ProductCart = ({ products }: ProductCartProps) => {
         </div>
       </div>
       <div className="flex flex-col">
-        <div>
-          <p className="">আজকের দাম</p>
+        <p className="text-[14px] pt-1">আজকের দাম</p>
         <div className="flex justify-between">
-              <p>
-            {" "}
-            <span className="font-semibold">{products.today}</span>{" "}
-            <span>টাকা</span>
-          </p>
-        </div>
-        <div>
-          <p className="ml-1">
-            {products.change.dir === "up" ? (
-              <span className="text-red-700">
-                <IoCaretUpOutline className="inline" /> {products.change.pct}%
-              </span>
-            ) : (
-              <span className="text-[#05893E]">
-                <IoCaretDown className="inline" />
-                {products.change.pct}%
-              </span>
-            )}
-          </p>
-        </div>
+          <div>
+            <p>
+              {" "}
+              <span className="font-bold text-[16px]">
+                {new Intl.NumberFormat("bn-BD").format(products.today)}
+              </span>{" "}
+              <span>টাকা</span>
+            </p>
+          </div>
+          <div>
+            <p className="bg-gray-50 py-[3px] px-2 rounded-xl font-semibold text-[14px]">
+              {products.change.dir === "up" ? (
+                <span className="text-red-700">
+                  <IoCaretUpOutline className="inline" /> {new Intl.NumberFormat("bn-BD").format(products.change.pct)}%
+                </span>
+              ) : (
+                <span className="text-[#05893E]">
+                  <IoCaretDown className="inline" />
+                  {new Intl.NumberFormat("bn-BD").format(products.change.pct)}%
+                </span>
+              )}
+            </p>
+          </div>
         </div>
       </div>
     </div>
