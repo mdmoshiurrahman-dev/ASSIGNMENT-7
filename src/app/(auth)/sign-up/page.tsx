@@ -1,8 +1,19 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+  };
+
   return (
     <div className="flex justify-center items-center flex-col mt-5">
       <h2 className="font-bold text-2xl">অ্যাকাউন্ট তৈরি করুন</h2>
@@ -10,55 +21,63 @@ const SignUpPage = () => {
         বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।
       </p>
       <div className="mt-5 bg-white flex justify-center flex-col items-center min-w-87.5 p-3 rounded-box mx-4">
-        <fieldset className="fieldset    w-full p-4 bg-white">
-          <label className="label font-bold text-black">নাম</label>
-          <input
-            required
-            minLength={3}
-            name="name"
-            type="text"
-            className="input w-full outline-0"
-            placeholder="যেমন: রহিম উদ্দিন"
-          />
+        <form className="w-full" onSubmit={onSubmit}>
+          <fieldset className="fieldset    w-full p-4 bg-white">
+            <label className="label font-bold text-black">নাম</label>
+            <input
+              required
+              minLength={3}
+              name="name"
+              type="text"
+              className="input w-full outline-0"
+              placeholder="যেমন: রহিম উদ্দিন"
+            />
+            <label className="label font-bold text-black">ইমেইল</label>
+            <input
+              required
+              name="email"
+              type="email"
+              className="input w-full outline-0"
+              placeholder="you@example.com"
+            />
 
-          <label className="label font-bold text-black">ইমেইল</label>
-          <input
-            required
-            name="email"
-            type="email"
-            className="input w-full outline-0"
-            placeholder="you@example.com"
-          />
+            <label className="label font-bold text-black">পাসওয়ার্ড</label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={8}
+              name="password"
+              type="password"
+              className="input w-full outline-0"
+              placeholder="কমপক্ষে ৮ অক্ষর"
+            />
 
-          <label className="label font-bold text-black">পাসওয়ার্ড</label>
-          <input
-            required
-            minLength={8}
-            name="password"
-            type="password"
-            className="input w-full outline-0"
-            placeholder="কমপক্ষে ৮ অক্ষর"
-          />
-
-          <label className="label font-bold text-black">
-            পাসওয়ার্ড নিশ্চিত করুন
-          </label>
-          <input
-            required
-            minLength={8}
-            name="conform_password"
-            type="password"
-            className="input w-full outline-0"
-            placeholder="আবার লিখুন"
-          />
-
-          <button
-            type="submit"
-            className="btn btn-neutral mt-4 bg-[#05893E] text-white shadow-md shadow-[#05893E]"
-          >
-            অ্যাকাউন্ট তৈরি করুন
-          </button>
-        </fieldset>
+            <label className="label font-bold text-black">
+              পাসওয়ার্ড নিশ্চিত করুন
+            </label>
+            <input
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              minLength={8}
+              name="conform_password"
+              type="password"
+              className="input w-full outline-0"
+              placeholder="আবার লিখুন"
+            />
+            {password !== confirmPassword && (
+              <p className="text-red-600">পাসওয়ার্ড মিলছে না</p>
+            )}
+            <button
+              type="submit"
+              className={`btn btn-neutral mt-4 bg-[#05893E] text-white shadow-md shadow-[#05893E]`}
+              disabled={password !== confirmPassword ? true : false}
+            >
+              অ্যাকাউন্ট তৈরি করুন
+            </button>
+          </fieldset>
+        </form>
         <div className="divider my-1 text-[14px] font-semibold">অথবা</div>
         <div className="flex gap-2 justify-center items-center flex-col md:flex-row w-full">
           <button className="btn w-full md:w-1/2 bg-white">
