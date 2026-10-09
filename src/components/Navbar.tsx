@@ -5,6 +5,8 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import MarqueeTextBox from "./MarqueeTextBox";
 import { Suspense } from "react";
 import CurrentDate from "./CurrentDate";
+import { HiMiniArrowUturnLeft } from "react-icons/hi2";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = async () => {
   const categoryApiNavbar = process.env.PRODUCT_CATEGORY_API_URL_NAVBAR;
@@ -44,17 +46,26 @@ const Navbar = async () => {
             </div>
             <div
               tabIndex={-1}
-              className="flex flex-col items-center gap-3 menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="flex flex-col   menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {/* <button className=" bg-transparent active:bg-transparent shadow-none border-transparent">
               সাইন ইন
             </button>
             <button className="">সাইন আপ</button> */}
-              <p className="font-medium">
-                <Link href={""} className="justify-between">
-                  প্রোফাইল
+              <div className="mb-3">
+                <li className="font-bold text-[18px]">Rezwan Ahmed</li>
+                <li>rezwanahmed@gmail.com</li>
+              </div>
+              <li className="mb-1">
+                <Link href={""}>
+                  <CgProfile className="inline" /> আমার প্রোফাইল
                 </Link>
-              </p>
+              </li>
+              <li>
+                <button className="flex justify-start text-red-600">
+                  <HiMiniArrowUturnLeft className="inline" /> সাইন আউট
+                </button>
+              </li>
             </div>
           </div>
           <Link href={"/"}>
@@ -65,7 +76,7 @@ const Navbar = async () => {
               <div>
                 <p className="font-bold text-[18px]">বাজার দর</p>
                 <p className="text-gray-700 text-[12px]">
-                  <Suspense>
+                  <Suspense fallback={"Loading..."}>
                     <CurrentDate />
                   </Suspense>
                 </p>
@@ -97,13 +108,19 @@ const Navbar = async () => {
               tabIndex={-1}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <Link href={""} className="justify-between">
-                  প্রোফাইল
+              <div className="mb-3">
+                <li className="font-bold text-[18px]">Rezwan Ahmed</li>
+                <li>rezwanahmed@gmail.com</li>
+              </div>
+              <li className="mb-1">
+                <Link href={""}>
+                  <CgProfile className="inline" /> আমার প্রোফাইল
                 </Link>
               </li>
               <li>
-                <a>লগ আউট</a>
+                <button className="flex justify-start text-red-600">
+                  <HiMiniArrowUturnLeft className="inline" /> সাইন আউট
+                </button>
               </li>
             </ul>
           </div>

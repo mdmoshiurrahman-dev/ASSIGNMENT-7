@@ -1,5 +1,6 @@
 import DisplayCategoryProducts from "@/components/DisplayCategoryProducts";
 import { Product } from "@/types/products";
+import { notFound } from "next/navigation";
 export const instant = false;
 
 type Props = {
@@ -18,6 +19,9 @@ const CategoryPage = async ({ params }: Props) => {
     throw new Error(`ERROR: ${res.status} - ${res.statusText}`);
   }
   const data: Product[] = await res.json();
+  if(data.length === 0){
+    notFound()
+  }
   return <DisplayCategoryProducts data={data} />;
 };
 

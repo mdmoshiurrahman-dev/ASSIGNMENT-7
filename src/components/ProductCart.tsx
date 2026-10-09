@@ -50,7 +50,7 @@ const ProductCart = ({ products }: ProductCartProps) => {
                     %
                   </span>
                 ) : (
-                  <span>0</span>
+                  <span>{new Intl.NumberFormat("bn-BD").format(0)}%</span>
                 )}
               </p>
             </div>

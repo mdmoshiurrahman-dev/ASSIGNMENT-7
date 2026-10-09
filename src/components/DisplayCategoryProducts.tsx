@@ -43,7 +43,6 @@ const DisplayCategoryProducts = ({ data }: DisplayCategoryProductsProps) => {
                   e.target.value as "default" | "smallToBig" | "bigToSmall",
                 )
               }
-              // defaultValue="default"
               className="select select-neutral border border-gray-300 outline-0 cursor-pointer"
             >
               <option value={"default"}>ডিফল্ট</option>
