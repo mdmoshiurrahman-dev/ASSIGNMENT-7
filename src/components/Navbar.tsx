@@ -5,8 +5,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import MarqueeTextBox from "./MarqueeTextBox";
 import { Suspense } from "react";
 import CurrentDate from "./CurrentDate";
-import { HiMiniArrowUturnLeft } from "react-icons/hi2";
 import { CgProfile } from "react-icons/cg";
+import SignOutBtn from "./SignOutBtn";
+import LoginAndSignUpBtn from "./LoginAndSignUpBtn";
 
 const Navbar = async () => {
   const categoryApiNavbar = process.env.PRODUCT_CATEGORY_API_URL_NAVBAR;
@@ -62,9 +63,7 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-                <button className="flex justify-start text-red-600">
-                  <HiMiniArrowUturnLeft className="inline" /> সাইন আউট
-                </button>
+              <SignOutBtn/>
               </li>
             </div>
           </div>
@@ -85,13 +84,10 @@ const Navbar = async () => {
           </Link>
         </div>
         {/* sign in and sign up button  */}
-        {/* <div className="navbar-end gap-3">
-        <button className="btn bg-transparent active:bg-transparent shadow-none border-transparent">সাইন ইন</button>
-        <button className="btn bg-[#05893E] text-white">সাইন আপ</button>
-      </div> */}
 
+       <LoginAndSignUpBtn/>
         {/* profile image while device is in large display  */}
-        <div
+        {/* <div
           tabIndex={0}
           className=" navbar-end dropdown dropdown-end cursor-pointer hidden md:flex"
         >
@@ -118,9 +114,7 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-                <button className="flex justify-start text-red-600">
-                  <HiMiniArrowUturnLeft className="inline" /> সাইন আউট
-                </button>
+                <SignOutBtn/>
               </li>
             </ul>
           </div>
@@ -129,7 +123,8 @@ const Navbar = async () => {
               UserName <IoMdArrowDropdown className="inline" />
             </p>
           </div>
-        </div>
+        </div> */}
+        
       </div>
 
       <div className="flex justify-start items-center py-2 md:py-4 border-b border-gray-200">
