@@ -47,15 +47,15 @@ const Navbar = async () => {
             </div>
             <div
               tabIndex={-1}
-              className="flex flex-col   menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="   menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {/* <button className=" bg-transparent active:bg-transparent shadow-none border-transparent">
               সাইন ইন
             </button>
             <button className="">সাইন আপ</button> */}
               <div className="mb-3">
-                <li className="font-bold text-[18px]">Rezwan Ahmed</li>
-                <li>rezwanahmed@gmail.com</li>
+                <p className="font-bold text-[18px]">Rezwan Ahmed</p>
+                <p>rezwanahmed@gmail.com</p>
               </div>
               <li className="mb-1">
                 <Link href={""}>
