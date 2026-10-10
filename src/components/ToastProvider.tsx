@@ -1,13 +1,15 @@
 'use client';
-import { Flip, ToastContainer } from 'react-toastify';
+
+import { Toaster } from 'react-hot-toast';
 
 export function ToastProvider() {
   return (
-    <ToastContainer
+    <Toaster
       position="top-center"
-      transition={Flip}
-      hideProgressBar
-      newestOnTop
+      reverseOrder={false} 
+      toastOptions={{
+       }
+    }
     />
   );
 }

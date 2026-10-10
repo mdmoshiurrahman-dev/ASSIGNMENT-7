@@ -2,9 +2,7 @@
 import SocialAuth from "@/components/SocialAuth";
 import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const SignInPage = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

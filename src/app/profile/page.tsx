@@ -3,8 +3,8 @@
 import SignOutBtn from "@/components/SignOutBtn";
 import { updateUser, useSession } from "@/lib/auth-client";
 import Image from "next/image";
+import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
-import { toast } from "react-toastify";
 
 const ProfilePage = () => {
   const { data } = useSession();

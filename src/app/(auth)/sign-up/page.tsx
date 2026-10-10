@@ -1,9 +1,9 @@
 "use client";
 import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from "react-toastify";
 
 const SignUpPage = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
