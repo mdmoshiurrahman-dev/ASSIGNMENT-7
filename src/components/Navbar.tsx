@@ -8,6 +8,7 @@ import CurrentDate from "./CurrentDate";
 import { CgProfile } from "react-icons/cg";
 import SignOutBtn from "./SignOutBtn";
 import LoginAndSignUpBtn from "./LoginAndSignUpBtn";
+import UserDropdownOnMobileResponsive from "./UserDropdownOnMobileResponsive";
 
 const Navbar = async () => {
   const categoryApiNavbar = process.env.PRODUCT_CATEGORY_API_URL_NAVBAR;
@@ -49,22 +50,7 @@ const Navbar = async () => {
               tabIndex={-1}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {/* <button className=" bg-transparent active:bg-transparent shadow-none border-transparent">
-              সাইন ইন
-            </button>
-            <button className="">সাইন আপ</button> */}
-              <div className="mb-3">
-                <p className="font-bold text-[18px]">Rezwan Ahmed</p>
-                <p>rezwanahmed@gmail.com</p>
-              </div>
-              <li className="mb-1">
-                <Link href={""}>
-                  <CgProfile className="inline" /> আমার প্রোফাইল
-                </Link>
-              </li>
-              <li>
-              <SignOutBtn/>
-              </li>
+              <UserDropdownOnMobileResponsive />
             </div>
           </div>
           <Link href={"/"}>
@@ -83,12 +69,10 @@ const Navbar = async () => {
             </div>
           </Link>
         </div>
-        {/* sign in and sign up button  */}
-
-       <LoginAndSignUpBtn/>
-        {/* profile image while device is in large display  */}
-    
-        
+        {/* profile  while device is in large display  */}
+          <div className="lg:flex lg:justify-end hidden">
+            <LoginAndSignUpBtn />
+          </div>
       </div>
 
       <div className="flex justify-start items-center py-2 md:py-4 border-b border-gray-200">
