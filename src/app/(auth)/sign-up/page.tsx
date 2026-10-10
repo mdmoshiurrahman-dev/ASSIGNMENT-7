@@ -1,11 +1,13 @@
 "use client";
 import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
+  const router = useRouter();
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -20,10 +22,12 @@ const SignUpPage = () => {
         name: data.name,
         email: data.email,
         password: data.password,
-        callbackURL: "/",
-      })
+      });
       if (res?.user) {
         toast.success("Account create success");
+      }
+      if (res) {
+        router.push("/sign-in");
       }
       if (error) {
         toast.error(error.message || "Failed to create account");
