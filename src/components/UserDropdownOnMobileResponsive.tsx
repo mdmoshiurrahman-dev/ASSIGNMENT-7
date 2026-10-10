@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 
 const UserDropdownOnMobileResponsive = () => {
   const pathName = usePathname();
-  const { data, isPending } = useSession();
+  const { data } = useSession();
   return data?.user ? (
     <>
       <div className="mb-3">
@@ -16,7 +16,7 @@ const UserDropdownOnMobileResponsive = () => {
         <p>{data.user.email}</p>
       </div>
       <li className="mb-1">
-        <Link href={""}>
+        <Link href={"/profile"}>
           <CgProfile className="inline" /> আমার প্রোফাইল
         </Link>
       </li>
@@ -28,13 +28,13 @@ const UserDropdownOnMobileResponsive = () => {
     <>
       <Link
         href={"/sign-in"}
-        className={`${pathName === "/sign-in" ? "text-[#05893E]" : ""} mb-1 font-semibold`}
+        className={`${pathName === "/sign-in" ? "text-[#05893E] border-gray-300 border p-1 rounded-md" : "border border-transparent"} mb-1  p-1  font-semibold`}
       >
         সাইন ইন
       </Link>
       <Link
         href={"/sign-up"}
-        className={`${pathName === "/sign-up" ? "text-[#05893E]" : ""} font-semibold`}
+        className={`${pathName === "/sign-up" ? "text-[#05893E] border-gray-300 border p-1 rounded-md" : "border border-transparent"}  p-1  font-semibold`}
       >
         সাইন আপ
       </Link>

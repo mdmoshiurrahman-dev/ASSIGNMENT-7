@@ -6,7 +6,7 @@ const SignOutBtn = () => {
   const router = useRouter();
 
   const handleSignOut = async () => {
-  const {data, error} =  await authClient.signOut({
+   await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
           router.push("/");
@@ -14,15 +14,13 @@ const SignOutBtn = () => {
         },
       },
     });
-    console.log(data);
-    console.log(error);
   };
 
   return (
     <>
       <button
         onClick={handleSignOut}
-        className="flex justify-start text-red-600"
+        className="flex justify-start text-red-600 cursor-pointer"
       >
         <HiMiniArrowUturnLeft className="inline" /> সাইন আউট
       </button>

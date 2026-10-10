@@ -1,4 +1,5 @@
 "use client";
+import SocialAuth from "@/components/SocialAuth";
 import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
@@ -62,14 +63,9 @@ const SignInPage = () => {
           </fieldset>
         </form>
         <div className="divider my-1 text-[14px] font-semibold">অথবা</div>
-        <div className="flex gap-2 justify-center items-center flex-col md:flex-row w-full">
-          <button className="btn w-full md:w-1/2 bg-white">
-            <FcGoogle className="inline " /> Google দিয়ে চালিয়ে যান
-          </button>
-          <button className="btn w-full md:w-1/2 bg-white">
-            <FaGithub className="inline" /> GitHub দিয়ে চালিয়ে যান
-          </button>
-        </div>
+       {/* social auth  */}
+        <SocialAuth />
+
         <p className="text-[14px] mt-4">
           অ্যাকাউন্ট আছে?{" "}
           <Link href={"/sign-up"} className="text-[#05893E]">

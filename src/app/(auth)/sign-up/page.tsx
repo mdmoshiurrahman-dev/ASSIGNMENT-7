@@ -1,7 +1,6 @@
 "use client";
 import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
-import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
@@ -22,7 +21,7 @@ const SignUpPage = () => {
         email: data.email,
         password: data.password,
         callbackURL: "/",
-      });
+      })
       if (res?.user) {
         toast.success("Account create success");
       }

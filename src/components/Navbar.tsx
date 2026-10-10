@@ -1,12 +1,9 @@
 import { CategoryTypesResponse } from "@/types/category";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
-import { IoMdArrowDropdown } from "react-icons/io";
 import MarqueeTextBox from "./MarqueeTextBox";
 import { Suspense } from "react";
 import CurrentDate from "./CurrentDate";
-import { CgProfile } from "react-icons/cg";
-import SignOutBtn from "./SignOutBtn";
 import LoginAndSignUpBtn from "./LoginAndSignUpBtn";
 import UserDropdownOnMobileResponsive from "./UserDropdownOnMobileResponsive";
 
@@ -50,7 +47,9 @@ const Navbar = async () => {
               tabIndex={-1}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <UserDropdownOnMobileResponsive />
+              <Suspense fallback={'Loading...'}>
+                <UserDropdownOnMobileResponsive />
+              </Suspense>
             </div>
           </div>
           <Link href={"/"}>
@@ -70,9 +69,10 @@ const Navbar = async () => {
           </Link>
         </div>
         {/* profile  while device is in large display  */}
-          <div className="lg:flex lg:justify-end hidden">
+        <div className="lg:flex justify-end hidden">
+
             <LoginAndSignUpBtn />
-          </div>
+        </div>
       </div>
 
       <div className="flex justify-start items-center py-2 md:py-4 border-b border-gray-200">
