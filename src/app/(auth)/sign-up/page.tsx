@@ -1,17 +1,37 @@
 "use client";
+import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    const data = Object.fromEntries(formData.entries()) as {
+      name: string;
+      email: string;
+      password: string;
+      conform_password: string;
+    };
+    if (data.password === data.conform_password) {
+      const { data: res, error } = await signUp.email({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        callbackURL: "/",
+      });
+      if (res?.user) {
+        toast.success("Account create success");
+      }
+      if (error) {
+        toast.error(error.message || "Failed to create account");
+      }
+    } else {
+      toast.error("password is not matched");
+    }
   };
 
   return (
@@ -43,8 +63,6 @@ const SignUpPage = () => {
 
             <label className="label font-bold text-black">পাসওয়ার্ড</label>
             <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
               minLength={8}
               name="password"
@@ -57,8 +75,6 @@ const SignUpPage = () => {
               পাসওয়ার্ড নিশ্চিত করুন
             </label>
             <input
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
               required
               minLength={8}
               name="conform_password"
@@ -66,13 +82,9 @@ const SignUpPage = () => {
               className="input w-full outline-0"
               placeholder="আবার লিখুন"
             />
-            {password !== confirmPassword && (
-              <p className="text-red-600">পাসওয়ার্ড মিলছে না</p>
-            )}
             <button
               type="submit"
               className={`btn btn-neutral mt-4 bg-[#05893E] text-white shadow-md shadow-[#05893E]`}
-              disabled={password !== confirmPassword ? true : false}
             >
               অ্যাকাউন্ট তৈরি করুন
             </button>
@@ -89,7 +101,7 @@ const SignUpPage = () => {
         </div>
         <p className="text-[14px] mt-4">
           অ্যাকাউন্ট আছে?{" "}
-          <Link href={""} className="text-[#05893E]">
+          <Link href={"/sign-in"} className="text-[#05893E]">
             সাইন ইন করুন
           </Link>
         </p>

@@ -1,14 +1,29 @@
 "use client";
+import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const SignInPage = () => {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    const data = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
+    const { data: res, error } = await signIn.email({
+      email: data.email,
+      password: data.password,
+      callbackURL: "/",
+    });
+    if (res?.user) {
+      toast.success("Login success");
+    }
+    if (error) {
+      toast.error(error.message || "Login failed");
+    }
   };
   return (
     <div className="flex justify-center items-center flex-col mt-5">
@@ -42,7 +57,7 @@ const SignInPage = () => {
               type="submit"
               className={`btn btn-neutral mt-4 bg-[#05893E] text-white shadow-md shadow-[#05893E]`}
             >
-              অ্যাকাউন্ট তৈরি করুন
+              সাইন ইন
             </button>
           </fieldset>
         </form>
@@ -57,8 +72,8 @@ const SignInPage = () => {
         </div>
         <p className="text-[14px] mt-4">
           অ্যাকাউন্ট আছে?{" "}
-          <Link href={""} className="text-[#05893E]">
-            সাইন ইন করুন
+          <Link href={"/src/app/(auth)/sign-up"} className="text-[#05893E]">
+            সাইন আপ করুন
           </Link>
         </p>
       </div>
