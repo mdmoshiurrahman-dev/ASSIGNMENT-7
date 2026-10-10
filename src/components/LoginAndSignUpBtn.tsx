@@ -4,6 +4,8 @@ import { CgProfile } from "react-icons/cg";
 import SignOutBtn from "./SignOutBtn";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useSession } from "@/lib/auth-client";
+import Image from "next/image";
+import { FaUser } from "react-icons/fa";
 
 const LoginAndSignUpBtn = () => {
   const { data, isPending } = useSession();
@@ -18,11 +20,17 @@ const LoginAndSignUpBtn = () => {
           className=" navbar-end dropdown dropdown-end cursor-pointer hidden md:flex"
         >
           <div role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+            <div className="w-10 rounded-full flex justify-center items-center">
+              {data.user.image ? (
+                <Image
+                  src={data.user.image}
+                  height={50}
+                  width={50}
+                  alt="user-logo"
+                />
+              ) : (
+                <FaUser className="text-xl" />
+              )}
             </div>
           </div>
           <div className="mt-6">
@@ -31,8 +39,8 @@ const LoginAndSignUpBtn = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <div className="mb-3">
-                <li className="font-bold text-[18px]">Rezwan Ahmed</li>
-                <li>rezwanahmed@gmail.com</li>
+                <li className="font-bold text-[18px]">{data.user.name}</li>
+                <li>{data.user.email}</li>
               </div>
               <li className="mb-1">
                 <Link href={""}>
@@ -40,13 +48,13 @@ const LoginAndSignUpBtn = () => {
                 </Link>
               </li>
               <li>
-                <SignOutBtn/>
+                <SignOutBtn />
               </li>
             </ul>
           </div>
           <div className="hover:bg-gray-100 py-1.5 rounded-xs mx-1">
             <p className="font-bold text-[17px] px-1">
-              UserName <IoMdArrowDropdown className="inline" />
+              {data.user.name} <IoMdArrowDropdown className="inline" />
             </p>
           </div>
         </div>

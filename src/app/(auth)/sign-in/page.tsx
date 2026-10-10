@@ -72,7 +72,7 @@ const SignInPage = () => {
         </div>
         <p className="text-[14px] mt-4">
           অ্যাকাউন্ট আছে?{" "}
-          <Link href={"/src/app/(auth)/sign-up"} className="text-[#05893E]">
+          <Link href={"/sign-up"} className="text-[#05893E]">
             সাইন আপ করুন
           </Link>
         </p>
