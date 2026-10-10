@@ -17,7 +17,6 @@ const ProfilePage = () => {
     const { data: resData, error } = await updateUser({
       name: data.name,
     });
-    console.log(resData?.status);
     if (resData?.status) {
       toast.success("Name update success");
     }
