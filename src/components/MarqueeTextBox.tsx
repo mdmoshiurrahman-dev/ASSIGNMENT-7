@@ -9,7 +9,7 @@ const MarqueeTextBox = async () => {
     throw new Error('API Error: The endpoint URL is invalid or returned a 404 Not Found status.');
   }
   const response = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    productApi,
     { next: { revalidate: 86400 } },
   );
   if (!response.ok) {

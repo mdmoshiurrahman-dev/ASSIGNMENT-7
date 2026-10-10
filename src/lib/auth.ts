@@ -9,6 +9,12 @@ const client = new MongoClient(debUrl);
 const db = client.db("bazardor");
 
 export const auth = betterAuth({
+  account: {
+		accountLinking: {
+      enabled:true,
+			trustedProviders: ["github", "google"] 
+		}
+	},
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
