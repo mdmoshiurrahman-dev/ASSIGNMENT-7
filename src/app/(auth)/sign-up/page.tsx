@@ -1,4 +1,5 @@
 "use client";
+import SocialAuth from "@/components/SocialAuth";
 import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -26,7 +27,7 @@ const SignUpPage = () => {
       if (res?.user) {
         toast.success("Account create success");
       }
-      if (res) {
+      if (res?.user) {
         router.push("/sign-in");
       }
       if (error) {
@@ -95,12 +96,7 @@ const SignUpPage = () => {
         </form>
         <div className="divider my-1 text-[14px] font-semibold">অথবা</div>
         <div className="flex gap-2 justify-center items-center flex-col md:flex-row w-full">
-          <button className="btn w-full md:w-1/2 bg-white">
-            <FcGoogle className="inline " /> Google দিয়ে চালিয়ে যান
-          </button>
-          <button className="btn w-full md:w-1/2 bg-white">
-            <FaGithub className="inline" /> GitHub দিয়ে চালিয়ে যান
-          </button>
+          <SocialAuth />
         </div>
         <p className="text-[14px] mt-4">
           অ্যাকাউন্ট আছে?{" "}
